@@ -1,8 +1,7 @@
-from sqlalchemy import (
-    Column, Integer, String, Boolean, DateTime, func
-)
+from sqlalchemy import Column, Integer, String, Boolean, DateTime, func
 from sqlalchemy.orm import relationship
 from database.core import Base
+
 
 class User(Base):
     __tablename__ = "users"
@@ -16,7 +15,9 @@ class User(Base):
     updated_at = Column(DateTime, default=func.now(), onupdate=func.now())
 
     # relationships
-    user_documents = relationship("UserDocument", back_populates="user", cascade="all, delete-orphan")
+    user_documents = relationship(
+        "UserDocument", back_populates="user", cascade="all, delete-orphan"
+    )
     roles = relationship("Role", back_populates="users", cascade="all")
     issues = relationship("BookIssue", back_populates="user")
     payments = relationship("Payment", back_populates="user")

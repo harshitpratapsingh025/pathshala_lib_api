@@ -10,12 +10,15 @@ class RoleEnum(enum.Enum):
     librarian = "librarian"
     student = "student"
     guest = "guest"
-    
+
+
 user_roles = sa.Table(
-    'user_roles', Base.metadata,
-    Column('user_id', sa.Integer, sa.ForeignKey('users.id'), primary_key=True),
-    Column('role_name', sa.String, sa.ForeignKey('roles.name'), primary_key=True)
+    "user_roles",
+    Base.metadata,
+    Column("user_id", sa.Integer, sa.ForeignKey("users.id"), primary_key=True),
+    Column("role_name", sa.String, sa.ForeignKey("roles.name"), primary_key=True),
 )
+
 
 class Role(Base):
     __tablename__ = "roles"

@@ -1,5 +1,10 @@
 from fastapi import APIRouter
-from src.schemas.auth import UserLoginResponse, UserRegisterRequest, UserLoginRequest, UserRegistrationResponse
+from src.schemas.auth import (
+    UserLoginResponse,
+    UserRegisterRequest,
+    UserLoginRequest,
+    UserRegistrationResponse,
+)
 
 router = APIRouter()
 
@@ -12,4 +17,6 @@ async def register_user(user: UserRegisterRequest) -> UserRegistrationResponse:
 
 @router.post("/token")
 async def login_for_access_token(form_data: UserLoginRequest) -> UserLoginResponse:
-    return UserLoginResponse(access_token="fake-token-12345", refresh_token="fake-refresh-token-12345")
+    return UserLoginResponse(
+        access_token="fake-token-12345", refresh_token="fake-refresh-token-12345"
+    )

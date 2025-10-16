@@ -2,6 +2,7 @@ from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey, func
 from sqlalchemy.orm import relationship
 from database.core import Base
 
+
 class Book(Base):
     __tablename__ = "books"
     id = Column(Integer, primary_key=True)
@@ -14,4 +15,6 @@ class Book(Base):
     total_copies = Column(Integer, default=0, nullable=False)
     created_at = Column(DateTime, default=func.now())
     updated_at = Column(DateTime, default=func.now(), onupdate=func.now())
-    copies = relationship("BookCopy", back_populates="book", cascade="all, delete-orphan")
+    copies = relationship(
+        "BookCopy", back_populates="book", cascade="all, delete-orphan"
+    )
